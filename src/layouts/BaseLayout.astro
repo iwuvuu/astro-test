@@ -3,8 +3,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
-const allPosts = Object.values(import.meta.glob('./posts/*.md', {eager: true}));
-const pageTitle = "Blog list page";
+const { pageTitle } = Astro.props;
 ---
 
 <html lang="en">
@@ -18,13 +17,9 @@ const pageTitle = "Blog list page";
 	<body>
 		<Header />
 
-		<h1>{pageTitle}</h1>
-    <p>This is a blog page made using astro file.</p>
-    <ul class="text-red-500">
-			{allPosts.map((post: any) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)}
-    </ul>
-
-		<Footer />	
+		<h1 id="testText">{pageTitle}</h1>
+    <slot />
+		<Footer />
 		<script>
 			import "../scripts/menu.js";
 		</script>
